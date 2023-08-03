@@ -11,9 +11,11 @@ app = Flask(__name__)
 
 def predict():
     if request.method == 'POST':
-        img_bytes = request.files["image_file"].read()
+        img_bytes = request.form["image_file"]
         print(img_bytes)
         tall = float(request.form['Tall'])
+	img = Image.open(io.BytesIO(base64.decodebytes(bytes(img_bytes, "utf-8"))))
+	img.save('D:/Image/my-image.jpeg')
         print(tall)
         return jsonify({"request_id": tall})
 
