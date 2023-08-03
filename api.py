@@ -2,7 +2,7 @@ from flask import Flask , render_template ,request , jsonify
 import os
 import io
 from PIL import Image
-import cv2
+import io, base64
 
 
 app = Flask(__name__)
@@ -12,8 +12,10 @@ app = Flask(__name__)
 def predict():
     if request.method == 'POST':
         img_bytes = request.files["image_file"].read()
+        print(img_bytes)
         tall = float(request.form['Tall'])
-        image = Image.open(io.BytesIO(img_bytes))
+        print(tall)
+        image = Image.open(io.BytesIO(base64.decodebytes(bytes(img_bytes))))
         return jsonify({"request_id": tall})
 
 @app.route('/')
