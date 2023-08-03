@@ -15,7 +15,7 @@ def predict():
         print(img_bytes)
         tall = float(request.form['Tall'])
         print(tall)
-        image = Image.open(io.BytesIO(base64.decodebytes(bytes(img_bytes))))
+        image = Image.open(io.BytesIO(base64.decodebytes(bytes(img_bytes, "utf-8"))))
         return jsonify({"request_id": tall})
 
 @app.route('/')
