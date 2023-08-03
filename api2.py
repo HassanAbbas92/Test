@@ -17,7 +17,7 @@ def predict():
         print(tall)
         img = Image.open(io.BytesIO(base64.decodebytes(bytes(img_bytes, "utf-8"))))
         img.save('D:/Image/my-image.png')
-        return jsonify({"request_id": tall})
+        return jsonify({"blendshapes": [{"Skinny": "1","test": "0","M_Amari_African": "0.2"}]})
 
 @app.route('/')
 def default():
